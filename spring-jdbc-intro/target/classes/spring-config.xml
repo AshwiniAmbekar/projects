@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- Loading annotated classes/beans -->
+	<context:component-scan base-package="com.lti.dao" />
+
+	<!-- Connection with the database using data source -->
+	<bean id="dataSource" class="oracle.jdbc.pool.OracleDataSource">
+		<property name="dataSourceName" value="ds" />
+		<property name="URL" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="user" value="hr" />
+		<property name="password" value="hr" />
+	</bean>
+
+	<!-- Settings for EntityManagerFactory configuration -->
+	<!-- It's possible we can drop META-INF/persistence.xml when using Spring 
+		+ JPA by doing all the ORM settings within this bean itself -->
+	<bean id="myEmf"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- Settings for enabling support transactions -->
+	<bean id="transactionManager"
+     class="org.springframework.orm.jpa.JpaTransactionManager">
+       <property name="entityManagerFactory" ref="myEmf" />
+   </bean>
+   <tx:annotation-driven />
+</beans>
