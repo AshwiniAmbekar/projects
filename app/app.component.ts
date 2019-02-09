@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: `<prod-list></prod-list>`,
+  templateUrl: `movie-list`,
   styles: []
 })
 export class AppComponent {
-  title = 'angular-app4';
+  title = 'angular-app5';
 }
