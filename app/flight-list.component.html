@@ -1,0 +1,33 @@
+<form>
+      
+    Source<input [(ngModel)]="src" name="src"/><br/>
+    Destination<input [(ngModel)]="dest" name="dest"/><br/>
+   
+    <input type="submit" value="Show" (click)="showFlights(src,dest)"/>
+</form>
+<div class="panel">
+        <div class="panel-heading"> {{ title }}</div>
+        <div class="panel-body">
+        <div class="table-responsive">
+        <table class="table">
+        <thead>
+            <tr>
+                <th>flightno</th>
+                <th>src</th>
+                <th>dest</th>
+                <th>compname</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let flight of flights">
+                <td>{{ flight.flightno }}</td>
+                <td>{{ flight.src }}</td>
+                <td>{{ flight.dest }}</td>
+                <td>{{ flight.compname }}</td>
+            </tr>
+        </tbody>
+        </table>
+        </div>
+        </div>
+        </div>
+
