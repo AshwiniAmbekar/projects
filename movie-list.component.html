@@ -1,0 +1,7 @@
+<form #pform="ngForm" (ngSubmit)="addMovies(mform)">  
+    Name<input [(ngModel)]="movie.name" name="name"/><br/>
+    Year<input [(ngModel)]="movie.year" name="year"/><br/>
+    <input type="submit" value="Add"/>
+</form>
+
+<h2>{{ response }}</h2>
